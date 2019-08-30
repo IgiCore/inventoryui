@@ -1,0 +1,44 @@
+{
+	"name": "inventory",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"start": "rescripts start",
+		"build": "rescripts build"
+	},
+	"homepage": ".",
+	"eslintConfig": {
+		"extends": [
+			"eslint:recommended",
+			"react-app"
+		]
+	},
+	"browserslist": {
+		"production": [
+			"chrome 73"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version"
+		]
+	},
+	"dependencies": {
+		"@rescripts/cli": "^0.0.11",
+		"@types/node": "^12.7.2",
+		"@types/react": "^16.9.2",
+		"@types/react-dom": "^16.9.0",
+		"@types/react-redux": "^7.1.2",
+		"@types/reactstrap": "^8.0.4",
+		"bootstrap": "^4.3.1",
+		"node-sass": "^4.12.0",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"react-redux": "^7.1.1",
+		"react-scripts": "^3.1.1",
+		"reactstrap": "^8.0.1",
+		"redux": "^4.0.4",
+		"redux-devtools-extension": "^2.13.8",
+		"redux-thunk": "^2.3.0",
+		"typescript": "^3.5.3"
+	}
+}

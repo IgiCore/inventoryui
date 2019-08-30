@@ -1,0 +1,27 @@
+name: IgiCore/inventoryui
+version: 1.0.0
+description: IgiCore inventory UI
+author: IgiCore
+license: LGPL-3.0-or-later
+server:
+  main:
+  - IgiCore.InventoryUi.Server
+  include:
+  - IgiCore.InventoryUi.Shared
+client:
+  main:
+  - IgiCore.InventoryUi.Client
+  include:
+  - IgiCore.InventoryUi.Shared
+  files:
+  - Overlays/InventoryUiOverlay.html
+  - Overlays/Glock.svg
+  - Overlays/IdCard.svg
+  - Overlays/main.css
+  - Overlays/main.js
+dependencies:
+  IgiCore/inventory: ^0.1.0
+repositories:
+- name: IgiCore/inventory
+  type: local
+  path: G:\Workspace\plugins\IgiCore\inventory

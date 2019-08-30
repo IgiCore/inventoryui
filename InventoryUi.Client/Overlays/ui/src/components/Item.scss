@@ -1,0 +1,9 @@
+.item {
+	z-index: 1;
+	cursor: pointer;
+	-webkit-transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;
+	padding: 1vh;
+	background: #1c1b17 no-repeat center center;
+	background-origin: content-box;
+}
