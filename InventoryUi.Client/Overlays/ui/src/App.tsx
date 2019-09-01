@@ -3,29 +3,30 @@ import { connect } from 'react-redux';
 import { Inventory, IInventory } from './components/Inventory';
 import { IItem } from './components/Item';
 import { AppState } from './store';
-import { addItem, moveItem } from './store/item/actions';
+import { addItem, removeItem, moveItem } from './store/item/actions';
 import { ItemState } from './store/item/types';
-import { addContainer } from './store/container/actions';
+import { addContainer, removeContainer } from './store/container/actions';
 import { ContainerState } from './store/container/types';
 import './App.scss';
 
 interface Props {
 	item: ItemState;
 	addItem: typeof addItem;
+	removeItem: typeof removeItem;
 	moveItem: typeof moveItem;
 	container: ContainerState;
 	addContainer: typeof addContainer;
+	removeContainer: typeof removeContainer;
 }
 
 class App extends React.Component<Props> {
-	keyCode = 'm';
+	hotkey = 'm';
 
 	constructor(props: Props) {
 		super(props);
 
-		nfive.on('hotkey', (keyCode: string) => {
-			nfive.log("Updated hotkey to " + keyCode)
-			this.keyCode = keyCode;
+		nfive.on('hotkey', (hotkey: string) => {
+			this.hotkey = hotkey;
 		});
 
 		nfive.on('add-item', (item: IItem) => {
@@ -33,17 +34,29 @@ class App extends React.Component<Props> {
 		});
 
 		nfive.on('add-container', (container: IInventory) => {
-			container.Items.forEach(item => this.props.addItem(item));
+			container.Items.forEach(this.props.addItem);
 			this.props.addContainer(container);
 		});
 
+		nfive.on('remove-item', (id: string) => {
+			this.props.removeItem(id);
+		});
+
+		nfive.on('remove-container', (id: string) => {
+			const container: (IInventory | undefined) = this.props.container.containers.find((c) => c.Id === id);
+
+			if (container === undefined) return;
+
+			container.Items.forEach((i) => this.props.removeItem(i.Id));
+
+			this.props.removeContainer(id);
+		});
+
 		document.addEventListener('keyup', (e) => {
-			nfive.log("keyup - key: " + e.key + " code: " + e.code);
-			nfive.log("Current keycode: " + this.keyCode);
-			if (e.key === this.keyCode) {
-				nfive.log("closing");
+			if (e.key === this.hotkey) {
 				nfive.send('close');
 			}
+
 			e.preventDefault();
 		});
 
@@ -78,7 +91,9 @@ export default connect(
 	mapStateToProps,
 	{
 		addItem,
+		removeItem,
 		moveItem,
-		addContainer
+		addContainer,
+		removeContainer
 	}
 )(App);
