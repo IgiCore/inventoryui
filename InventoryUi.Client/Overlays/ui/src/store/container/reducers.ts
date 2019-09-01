@@ -1,4 +1,4 @@
-import { ContainerState, ContainerActionTypes, ADD_CONTAINER } from './types';
+import { ContainerState, ContainerActionTypes, ADD_CONTAINER, REMOVE_CONTAINER } from './types';
 
 const initialState: ContainerState = {
 	containers: []
@@ -10,6 +10,10 @@ export function containerReducer(state: ContainerState = initialState, action: C
 			return {
 				containers: [...state.containers, action.payload]
 			};
+		case REMOVE_CONTAINER:
+			return {
+				containers: state.containers.filter((c) => c.Id !== action.id)
+			}
 		default:
 			return state;
 	}

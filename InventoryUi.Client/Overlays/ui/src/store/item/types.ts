@@ -1,6 +1,7 @@
 import { IItem } from '../../components/Item';
 
 export const ADD_ITEM = 'ADD_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const MOVE_ITEM = 'MOVE_ITEM';
 
 export interface ItemState {
@@ -12,6 +13,11 @@ interface AddItemAction {
 	payload: IItem
 }
 
+interface RemoveItemAction {
+	type: typeof REMOVE_ITEM
+	id: string
+}
+
 interface MoveItemAction {
 	type: typeof MOVE_ITEM
 	meta: {
@@ -21,4 +27,4 @@ interface MoveItemAction {
 	}
 }
 
-export type ItemActionTypes = AddItemAction | MoveItemAction;
+export type ItemActionTypes = AddItemAction | RemoveItemAction | MoveItemAction;
