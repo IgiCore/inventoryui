@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Inventory, IInventory } from './components/Inventory';
+import { Container, IContainer } from './components/Container';
 import { IItem } from './components/Item';
 import { AppState } from './store';
 import { addItem, removeItem, moveItem } from './store/item/actions';
@@ -33,7 +33,7 @@ class App extends React.Component<Props> {
 			this.props.addItem(item);
 		});
 
-		nfive.on('add-container', (container: IInventory) => {
+		nfive.on('add-container', (container: IContainer) => {
 			container.Items.forEach(this.props.addItem);
 			this.props.addContainer(container);
 		});
@@ -43,7 +43,7 @@ class App extends React.Component<Props> {
 		});
 
 		nfive.on('remove-container', (id: string) => {
-			const container: (IInventory | undefined) = this.props.container.containers.find((c) => c.Id === id);
+			const container: (IContainer | undefined) = this.props.container.containers.find((c) => c.Id === id);
 
 			if (container === undefined) return;
 
@@ -67,7 +67,7 @@ class App extends React.Component<Props> {
 		return (
 			<>
 				{this.props.container.containers.map(c => (
-					<Inventory
+					<Container
 						key={c.Id}
 						Id={c.Id}
 						Name={c.Name}

@@ -1,15 +1,15 @@
-import { IInventory } from '../../components/Inventory';
+import { IContainer } from '../../components/Container';
 
 export const ADD_CONTAINER = 'ADD_CONTAINER';
 export const REMOVE_CONTAINER = 'REMOVE_CONTAINER';
 
 export interface ContainerState {
-	containers: IInventory[]
+	containers: IContainer[]
 }
 
 interface AddContainerAction {
 	type: typeof ADD_CONTAINER
-	payload: IInventory
+	payload: IContainer
 }
 
 interface RemoveContainerAction {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ICell, Cell } from './Cell';
 import { IItem, Item } from './Item';
-import "./Inventory.scss";
+import "./Container.scss";
 
-export interface IInventory {
+export interface IContainer {
 	Id: string;
 	Name: string;
 	Width: number;
@@ -17,8 +17,8 @@ interface IState {
 	Cells: ICell[][];
 }
 
-export class Inventory extends React.Component<IInventory, IState> {
-	constructor(props: IInventory) {
+export class Container extends React.Component<IContainer, IState> {
+	constructor(props: IContainer) {
 		super(props);
 
 		let cells: ICell[][] = [];
@@ -57,7 +57,7 @@ export class Inventory extends React.Component<IInventory, IState> {
 		let c = 0;
 
 		return (
-			<section className="inventory">
+			<section className="container">
 				<main>
 					<header>
 						{this.props.Name}

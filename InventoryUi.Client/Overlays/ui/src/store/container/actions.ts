@@ -1,7 +1,7 @@
-import { IInventory } from '../../components/Inventory';
+import { IContainer } from '../../components/Container';
 import { ADD_CONTAINER, REMOVE_CONTAINER, ContainerActionTypes } from './types'
 
-export function addContainer(container: IInventory): ContainerActionTypes {
+export function addContainer(container: IContainer): ContainerActionTypes {
 	return {
 		type: ADD_CONTAINER,
 		payload: container
