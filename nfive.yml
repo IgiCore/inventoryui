@@ -21,7 +21,11 @@ client:
   - Overlays/main.js
 dependencies:
   IgiCore/inventory: ^0.1.0
+  IgiCore/characters: ^1.0.0
 repositories:
 - name: IgiCore/inventory
   type: local
   path: G:\Workspace\plugins\IgiCore\inventory
+- name: IgiCore/characters
+  type: local
+  path: G:\Workspace\plugins\IgiCore\characters

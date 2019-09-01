@@ -6,15 +6,15 @@ using NFive.SDK.Client.Rpc;
 using NFive.SDK.Client.Services;
 using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Core.Models.Player;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
-using IgiCore.InventoryUi.Client.Models;
 using IgiCore.InventoryUi.Client.Overlays;
 using IgiCore.InventoryUi.Shared;
+using IgiCore.InventoryUi.Shared.Models;
 using NFive.SDK.Client.Input;
-using NFive.SDK.Core.Helpers;
 
 namespace IgiCore.InventoryUi.Client
 {
@@ -34,11 +34,21 @@ namespace IgiCore.InventoryUi.Client
 			// Update local configuration on server configuration change
 			this.Rpc.Event(InventoryUiEvents.Configuration).On<Configuration>((e, c) => this.config = c);
 
+			this.Rpc.Event(InventoryUiEvents.LoadCharacterInventories).On<List<Container>>(LoadCharacterInventories);
+
 			// Create overlay
 			this.overlay = new InventoryUiOverlay(this.OverlayManager);
 
 			// Attach a tick handler
 			this.Ticks.Attach(OnTick);
+		}
+
+		private void LoadCharacterInventories(IRpcEvent e, List<Container> inventories)
+		{
+			foreach (var inventory in inventories)
+			{
+				this.overlay.AddContainer(inventory);
+			}
 		}
 
 		private void OnTick()

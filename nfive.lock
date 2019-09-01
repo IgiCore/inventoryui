@@ -1,5 +1,6 @@
 plugins:
-- name: IgiCore/inventory
+- &o0
+  name: IgiCore/inventory
   version: 0.1.0
   description: NFive Plugin
   author: IgiCore
@@ -16,3 +17,34 @@ plugins:
     - IgiCore.Inventory.Shared
     files:
     - Overlays/InventoryOverlay.html
+- dependency_nodes:
+  - *o0
+  name: IgiCore/characters
+  version: 1.0.0
+  description: NFive Plugin
+  author: IgiCore
+  license: LGPL
+  server:
+    main:
+    - IgiCore.Characters.Server
+    include:
+    - IgiCore.Characters.Shared
+  client:
+    main:
+    - IgiCore.Characters.Client
+    include:
+    - IgiCore.Characters.Shared
+    files:
+    - Overlays/CharacterOverlay.html
+    - Overlays/Character.js
+    - Overlays/CharacterSelect.js
+    - Overlays/gravity.woff2
+    - Overlays/main.js
+    - Overlays/pricedown.woff2
+    - Overlays/style.css
+  dependencies:
+    IgiCore/inventory: ^0.1.0
+  repositories:
+  - name: IgiCore/inventory
+    type: local
+    path: G:\Workspace\plugins\IgiCore\inventory

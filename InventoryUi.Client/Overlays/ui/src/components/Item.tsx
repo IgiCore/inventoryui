@@ -20,7 +20,7 @@ export const Item: React.FC<IItem> = (props) => {
 			gridColumnStart: props.X + 1,
 			gridRowEnd: props.Y + 1 + props.Height,
 			gridColumnEnd: props.X + 1 + props.Width,
-			backgroundImage: `url('${props.Image.replace("'", "\\'")}')`
+			backgroundImage: `url('${(props.Image || "").replace("'", "\\'")}')`
 		}}></div>
 	)
 };
